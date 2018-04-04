@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/jquery.datetimepicker.css">
+	</head>
+	<body>
+			<div style="width: 300px; margin:20px auto;  font-weight: bold; line-height: 40px;">
+				<div>产品名称&nbsp;&nbsp;<input type="text"></div>
+				<div>最小订货单位<input type="text"></div>
+				<div>产品策略内容</div>
+				<textarea rows="5" cols="31"></textarea>
+				<div>产品策略类型
+					<select class="stra_select">
+						<option value="0">请选择策略类型</option>
+				  		<option value="1">赠送</option><!--系列赠送系列任意某商品/系列赠送系列指定商品 单品赠送系列任意某商品/单品赠送系列指定商品-->
+				  		<option value="2">折扣</option>
+				  		<option value="3">价格满减</option>
+				  		<option value="4">加价赠送</option>
+				  		<option value="5">套装折扣</option>
+					</select>
+				</div>
+				<div class="stra_block">
+					
+				</div>
+				<div class="stra_option">
+					<div id="1">
+						<div>活动策略名称<input type="text"></div>
+						<h3>起始时间</h3>
+						<input type="text" value="" id="start" class="ex"/>
+						<h3>结束时间</h3>
+						<input type="text" value="" id="end" class="ex"/>
+						<div>客户策略
+							<select>
+								<option>是</option>
+								<option>否</option>
+							</select>
+						</div>
+						<div>购买条件</div>
+						<div>
+							<select>
+								<option>单品</option>
+								<option>系列</option>
+							</select>
+							<input type="text">
+							<select>			
+								<option>山茶花1</option>
+								<option>山茶花2</option>
+								<option>山茶花3</option>
+								<option>山茶花4</option>
+							</select>
+							<span>-</span>
+							<input type="number">
+							<span>+</span>
+						</div>
+						<div>奖励商品</div>
+						<div>
+							<select>
+								<option>单品</option>
+								<option>系列</option>
+							</select>
+							<input type="text">
+							<select>			
+								<option>山茶花1</option>
+								<option>山茶花2</option>
+								<option>山茶花3</option>
+								<option>山茶花4</option>
+							</select>
+							<span>+</span>
+							<input type="number">
+							<span>+</span>
+							<select>			
+								<option>可选</option>
+								<option>必选</option>
+							</select>
+						</div>
+						<div>奖励赠品</div>
+						<div>
+							<select>
+								<option>单品</option>
+								<option>系列</option>
+							</select>
+							<input type="text">
+							<select>			
+								<option>山茶花1</option>
+								<option>山茶花2</option>
+								<option>山茶花3</option>
+								<option>山茶花4</option>
+							</select>
+							<span>+</span>
+							<input type="number">
+							<span>+</span>
+							<select>			
+								<option>可选</option>
+								<option>必选</option>
+							</select>
+							<select>			
+								<option>无费比</option>
+								<option>使用费比</option>
+							</select>
+						</div>
+						<div>奖励物料</div>
+						<div>
+							<select>
+								<option>单品</option>
+								<option>系列</option>
+							</select>
+							<input type="text">
+							<select>			
+								<option>山茶花1</option>
+								<option>山茶花2</option>
+								<option>山茶花3</option>
+								<option>山茶花4</option>
+							</select>
+							<span>+</span>
+							<input type="number">
+							<span>+</span>
+							<select>			
+								<option>可选</option>
+								<option>必选</option>
+							</select>
+							<select>			
+								<option>无费比</option>
+								<option>使用费比</option>
+							</select>
+						</div>
+					</div>
+					<div id="2">
+						<div>活动策略名称<input type="text"></div>
+						<h3>起始时间</h3>
+						<input type="text" value="" id="start" class="ex"/>
+						<h3>结束时间</h3>
+						<input type="text" value="" id="end" class="ex"/>
+						<div>客户策略
+							<select>
+								<option>是</option>
+								<option>否</option>
+							</select>
+						</div>
+						<div>购买条件</div>
+						<div>
+							<select>
+								<option>单品</option>
+								<option>系列</option>
+							</select>
+							<select>
+								<option>等于</option>
+								<option>大于</option>
+							</select>
+							<select>			
+								<option>数量</option>
+								<option>金额</option>
+							</select>
+							<input type="text">
+						</div>
+						<div>奖励条件</div>
+						<input type="number" />
+					</div>
+					<div id="3">
+					    <div>活动策略名称<input type="text"></div>
+						<h3>起始时间</h3>
+						<input type="text" value="" id="start" class="ex"/>
+						<h3>结束时间</h3>
+						<input type="text" value="" id="end" class="ex"/>
+						<div>客户策略
+							<select>
+								<option>是</option>
+								<option>否</option>
+							</select>
+						</div>
+						<div>购买条件</div>
+						<div>
+							<select>
+								<option>单品</option>
+								<option>系列</option>
+							</select>
+							<select>
+								<option>等于</option>
+								<option>大于</option>
+							</select>
+							<select>			
+								<option>数量</option>
+								<option>金额</option>
+							</select>
+							<input type="text">
+						</div>
+						<div>奖励条件</div>
+						<input type="number" />
+					</div>
+					<div id="4">
+						<div>活动策略名称<input type="text"></div>
+						<h3>起始时间</h3>
+						<input type="text" value="" id="start" class="ex"/>
+						<h3>结束时间</h3>
+						<input type="text" value="" id="end" class="ex"/>
+						<div>客户策略
+							<select>
+								<option>是</option>
+								<option>否</option>
+							</select>
+						</div>
+						<div>购买条件</div>
+						<div>
+							<select>
+								<option>金额</option>
+							</select>
+							<select>
+								<option>等于</option>
+								<option>大于</option>
+							</select>
+							<input type="text">
+						</div>
+						<div>奖励条件</div>
+						<select>
+							<option>单品</option>
+							<option>系列</option>
+						</select>
+						<select>
+							<option>等于</option>
+							<option>大于</option>
+						</select>
+						<span>+</span>
+					</div>
+					<div id="5">
+						<div>活动策略名称<input type="text"></div>
+						<h3>起始时间</h3>
+						<input type="text" value="" id="start" class="ex"/>
+						<h3>结束时间</h3>
+						<input type="text" value="" id="end" class="ex"/>
+						<div>客户策略
+							<select>
+								<option>是</option>
+								<option>否</option>
+							</select>
+						</div>
+						<div>套装价格</div>
+						<div>
+							<span>添加</span><span>删除</span>
+							<input type="text">
+							<input type="number">
+							<input type="number">
+						</div>
+						<div>奖励赠品</div>
+						<div>
+							<span>添加</span><span>删除</span>
+							<input type="text">
+							<input type="number">
+							<select>
+								<option>无费比</option>
+								<option>使用费比</option>
+							</select>
+						</div>
+						<div>奖励物料</div>
+						<div>
+							<span>添加</span><span>删除</span>
+							<input type="text">
+							<input type="number">
+							<select>
+								<option>无费比</option>
+								<option>使用费比</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="sure">
+					<input type="button" value="保存" />
+					<input type="button" value="取消"/>
+				</div>				
+			</div>			
+	</body>
+</html>

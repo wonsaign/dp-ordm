@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- 同步帐户余额名细 -->
+	<import resource="classpath:lib/sync_balance_task.xml" />
+	<import resource="classpath:lib/sync_balance_end_task.xml" />
+
+	<import resource="classpath:lib/check_cart_task.xml" />
+	<import resource="classpath:lib/sync_cancelorders_task.xml" />
+	<import resource="classpath:lib/sync_counters_task.xml" />
+	<import resource="classpath:lib/sync_customers_task.xml" />
+	<import resource="classpath:lib/sync_order_task.xml" />
+	<import resource="classpath:lib/sync_orderdetail_task.xml" />
+	<import resource="classpath:lib/sync_orgunits_task.xml" />
+	<import resource="classpath:lib/sync_products_task.xml" />
+	<import resource="classpath:lib/sync_seller_task.xml" />
+	
+	<import resource="classpath:lib/scan_monthpersent_task.xml" />
+	
+	<import resource="classpath:lib/sync_logistics_task.xml" />
+	<import resource="classpath:lib/reserveorder_task.xml" />
+		
+	<import resource="classpath:lib/sync_storehouses_task.xml" />
+	
+	<import resource="classpath:lib/redeempoint_task.xml" />
+</beans>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+          http://www.springframework.org/schema/jee
+          http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+	<!-- 定义DataSource 样本 -->
+	  <bean id="k3" destroy-method="close"
+			class="org.apache.commons.dbcp2.BasicDataSource">
+			<property name="driverClassName" value="${K3.jdbc.driver}" />
+			<property name="url" value="${K3.jdbc.url}" />
+			<property name="username" value="${K3.jdbc.username}" />
+			<property name="password" value="${K3.jdbc.password}" />
+			<property name="maxIdle" value="${K3.jdbc.minPoolSize}" />
+			<property name="maxTotal" value="${K3.jdbc.maxPoolSize}" />
+			<property name="initialSize" value="1" />
+		</bean>
+
+		<bean id="dwt" destroy-method="close"
+			class="org.apache.commons.dbcp2.BasicDataSource">
+			<property name="driverClassName" value="${dwt.jdbc.driver}" />
+			<property name="url" value="${dwt.jdbc.url}" />
+			<property name="username" value="${dwt.jdbc.username}" />
+			<property name="password" value="${dwt.jdbc.password}" />
+			<property name="maxIdle" value="${dwt.jdbc.minPoolSize}" />
+			<property name="maxTotal" value="${dwt.jdbc.maxPoolSize}" />
+			<property name="initialSize" value="1" />
+		</bean>
+		
+		<bean id="dwt_10" destroy-method="close"
+			class="org.apache.commons.dbcp2.BasicDataSource">
+			<property name="driverClassName" value="${dwt_10.jdbc.driver}" />
+			<property name="url" value="${dwt_10.jdbc.url}" />
+			<property name="username" value="${dwt_10.jdbc.username}" />
+			<property name="password" value="${dwt_10.jdbc.password}" />
+			<property name="maxIdle" value="${dwt_10.jdbc.minPoolSize}" />
+			<property name="maxTotal" value="${dwt_10.jdbc.maxPoolSize}" />
+			<property name="initialSize" value="1" />
+		</bean>
+</beans>

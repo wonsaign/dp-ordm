@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tables>
+	<DDL id="ORDM_SELLER">
+
+		<table id="ORDM_SELLER">
+			<c>##金蝶销售记录</c>
+			<key></key>
+			<type>query</type>
+			<name></name>
+			<stmt>
+<![CDATA[
+SELECT distinct [CounterCode]
+      ,pd.[Unitcode]
+      ,sum([Amount]) as amount
+      ,sum(quantity) as quantity
+FROM [BI_LS_New].[dbo].[BI_Transactionlog_NS] tn
+inner join [ERP_WITPOS].[dbo].[I_ERP_Products] pd on pd.Unitcode = tn.Unitcode
+where TXD_Date >= ? and TXD_Date <= ?
+and [Brand] = N'ZW'
+and [Manufacturers] <> N'LS露芯'
+and [K3ProductCode] not like N'C%'						
+and [Status] = N'B'									
+and CounterCode not in (SELECT distinct [CounterCode]	
+	FROM [ERP_WITPOS].[dbo].[CounterInfo_Canceled]
+	where [IsCanceled] = 1)
+and CounterCode not like N'00000%'					
+group by [CounterCode],pd.[Unitcode]
+]]>
+			</stmt>
+		</table>
+
+		<proc id="ORDM_DEMO">
+			<!-- update, query -->
+			<type>update</type>
+			<stmt>
+<![CDATA[
+]]>
+			</stmt>
+		</proc>
+	</DDL>
+
+	<DDL id="SYNC_PRODUCTS">
+		<table>
+			<c>##产品信息同步</c>
+			<key></key>
+			<name></name>
+			<stmt>
+<![CDATA[
+SELECT 	t.FItemID as ProductId,
+		t0.FNumber as PBrand,
+		t.FNumber as productcode,
+		t.FName as Name,
+		t3.FBarCode as BarCode,
+		t.F_112 as LogisticsCode,F_108 as RetailPrice,t.F_102 as MemberPrice
+,F_103 as MaterialPrice,t.F_101 as Manufacturer,t.FModel as Specifications,t.FSize as Size
+,t.FLength as Length,t.FWidth as Width,t.FHeight as Height,t.f_111 as BoxNum
+,t2.[FItemID] as TypeID,t2.[FName] as TypeName,t1.[FItemID] as FItemClassID,t1.[FName] as FItemClassName
+,t.FDeleted as Status,cast(GETDATE() as bigint) as LastUpdateTime
+from [AIS20130314203706].[dbo].[t_ICItem] t
+join [AIS20130314203706].[dbo].[t_Item] t0 on t.F_105 = t0.FItemID
+left join (SELECT distinct [FItemID],[FParentID],[FName] FROM [AIS20130314203706].[dbo].[t_Item] where [FParentID]=1723) t1 on t.FParentID=t1.FItemID
+left join (select distinct [FItemID],[FName] from [AIS20130314203706].[dbo].[t_Item] where [FItemID]=1723) t2 on t1.[FParentID]=t2.[FItemID]
+left join [AIS20130314203706].[dbo].[t_BarCode] t3 on t3.FItemID = t.FItemID
+WHERE  F_112 IS NOT null
+AND t.FNumber LIKE N'Z.%'
+UNION ALL
+SELECT t.FItemID as ProductId,t0.FNumber as PBrand,t.FNumber as productcode,t.FName as Name,t3.FBarCode as BarCode,t.F_112 as LogisticsCode
+,F_108 as RetailPrice,t.F_102 as MemberPrice,F_103 as MaterialPrice,t.F_101 as Manufacturer,t.FModel as Specifications,t.FSize as Size,t.FLength as Length
+,t.FWidth as Width,t.FHeight as Height,t.f_111 as BoxNum,t2.[FItemID] as TypeID,t2.[FName] as TypeName
+,t1.[FItemID] as FItemClassID,t1.[FName] as FItemClassName,t.FDeleted as Status,cast(GETDATE() as bigint) as LastUpdateTime
+FROM [AIS20130314203706].[dbo].[t_ICItem] t
+JOIN [AIS20130314203706].[dbo].[t_Item] t0 on t.F_105 = t0.FItemID
+LEFT JOIN [AIS20130314203706].[dbo].[t_BarCode] tb on tb.FItemID = t.FItemID
+LEFT JOIN (select distinct [FItemID],[FParentID],[FName] from [AIS20130314203706].[dbo].[t_Item] where [FParentID]=893) t1 on t.FParentID=t1.FItemID
+LEFT JOIN (select distinct [FItemID],[FName] from [AIS20130314203706].[dbo].[t_Item] where [FItemID]=893) t2 on t1.[FParentID]=t2.[FItemID]
+LEFT JOIN [AIS20130314203706].[dbo].[t_BarCode] t3 on t3.FItemID = t.FItemID
+WHERE  F_112 IS NOT null
+AND t.FNumber LIKE N'C.%'
+UNION ALL
+SELECT t.FItemID as ProductId,t0.FNumber as PBrand,t.FNumber as productcode,t.FName as Name,t4.FBarCode as BarCode,t.F_112 as LogisticsCode
+,F_108 as RetailPrice,t.F_102 as MemberPrice,F_103 as MaterialPrice,t.F_101 as Manufacturer,t.FModel as Specifications,t.FSize as Size,t.FLength as Length
+,t.FWidth as Width,t.FHeight as Height,t.f_111 as BoxNum,t3.[FItemID] as TypeID,t3.[FName] as TypeName
+,t1.[FItemID] as FItemClassID,t1.[FName] as FItemClassName,t.FDeleted as Status,cast(GETDATE() as bigint) as LastUpdateTime
+FROM [AIS20130314203706].[dbo].[t_ICItem] t
+JOIN [AIS20130314203706].[dbo].[t_Item] t0 on t.F_105 = t0.FItemID
+LEFT JOIN (select distinct [FItemID],FParentID,FName from [AIS20130314203706].[dbo].[t_Item] where FParentID in (672,678)) t1 on t.FParentID=t1.FItemID
+LEFT JOIN (select distinct [FItemID],FParentID,FName from [AIS20130314203706].[dbo].[t_Item] where [FItemID] in (672,678)) t2 on t1.FParentID=t2.FItemID
+LEFT JOIN (select distinct [FItemID],FName from [AIS20130314203706].[dbo].[t_Item] where [FItemID]=670) t3 on t2.FParentID=t3.[FItemID]
+LEFT JOIN [AIS20130314203706].[dbo].[t_BarCode] t4 on t4.FItemID = t.FItemID
+WHERE F_112 IS NOT null
+AND t.FNumber LIKE N'W.%'
+]]>
+			</stmt>
+		</table>
+
+		<proc id="SAVE_ORDM">
+			<!-- update, query -->
+			<type>update</type>
+			<stmt>
+<![CDATA[
+
+]]>
+			</stmt>
+		</proc>
+		<proc id="UPDATE_ORDM">
+			<!-- update, query -->
+			<type>update</type>
+			<stmt>
+<![CDATA[
+
+]]>
+			</stmt>
+		</proc>
+	</DDL>
+
+</Tables>
+	

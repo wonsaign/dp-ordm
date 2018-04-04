@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tables>
+	<DDL id="DWT_ORGUNIT">
+		<datasource type="datasource">
+			dwt_10
+		</datasource>
+		<table id="ORGANIZATION">
+			<c>##店务通组织结构</c>
+			<type>query</type>
+			<key>Path</key>
+			<name></name>
+			<stmt>
+				<![CDATA[
+					SELECT BIN_OrganizationID AS orgId ,
+							DepartCode AS orgCode ,
+							DepartName AS commonName,
+							[Level] AS PathSize,
+							Path,
+							Type AS [Level],
+							ValidFlag,
+							TestType							
+					FROM [CherryBrand_LS].[Basis].[BIN_Organization] 
+					ORDER BY PathSize
+				]]>
+			</stmt>
+		</table>
+	</DDL>
+
+	<DDL id="ORDM_ORGUNIT">
+		<table id="ORGUNIT">
+			<c>##组织</c>
+			<key></key>
+			<type>query</type>
+			<stmt>
+				<![CDATA[
+				SELECT * FROM CORE_ORGUNIT
+				]]>
+			</stmt>
+		</table>
+
+		<proc id="INSERT_CORE_ORGUNIT">
+			<!-- update, query -->
+			<type>update</type>
+			<stmt>
+				<![CDATA[
+				INSERT INTO CORE_ORGUNIT (ORGID,PID,ORGCODE,COMMONNAME,LEVEL,STATUS,LASTUPDATE) 
+				VALUES (?,?,?,?,?,?,?)
+				]]>
+			</stmt>
+		</proc>
+
+		<proc id="UPDATE_CORE_ORGUNIT">
+			<!-- update, query -->
+			<type>update</type>
+			<stmt>
+				<![CDATA[
+				UPDATE CORE_ORGUNIT SET 
+					PID=?,ORGCODE=?,COMMONNAME=?,LEVEL=?,STATUS=?,LASTUPDATE=? 
+					WHERE ORGID=?
+				]]>
+			</stmt>
+		</proc>
+
+	</DDL>
+</Tables>
+
+
+	

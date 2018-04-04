@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Tables>
+	<DDL id="K3_ORDERS">
+		<datasource type="datasource">
+			k3
+		</datasource>
+		<table id="K3_ORDER">
+			<c>##金蝶订单</c>
+			<type>query</type>
+			<key>OrderNo</key>
+			<name></name>
+			<property>OrderNo
+			</property>
+			<stmt>
+				<![CDATA[
+					SELECT tb.FBillNo as OrderNo
+					FROM [AIS20130314203706].[dbo].[ICStockBill] tb
+					WHERE tb.FBillNo like 'BXX%' AND tb.FStatus ='1' AND datediff(dd,FDate,GETDATE())<16
+					ORDER BY tb.FDate DESC
+				]]>
+			</stmt>
+		</table>
+	</DDL>
+</Tables>
+
+
+	

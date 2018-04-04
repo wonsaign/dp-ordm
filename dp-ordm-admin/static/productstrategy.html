@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+	table{border: 1px solid black;width: 90%;margin: 20px auto;}
+	body{ padding:5% 0 0 20%;}
+	table{border: 1px solid black;margin: 20px auto;}
+	th{background-color: #92bce4}
+	.begin_date{ width:25%; height:30px; border:1px #ccc solid;}
+	.end_date{ width:25%; height:30px; border:1px #ccc solid;}
+	.datep{ margin-bottom:40px;}
+	#add_activity,#delete_activity,#add_gift{color: blue;}
+	#strategy,#buy,#give{width:70px;border:1px #ccc solid;}
+	.head,.activity,.gift,.result{width:80%;border:1px #ccc solid;}
+	#ok{float: right;}
+	.delete_gift{color: blue;cursor: pointer;}
+</style>
+<script type="text/javascript" src="js/jedate.min.js"></script>
+<title></title>
+</head>
+<body>
+<div class="head">
+<div id="strategy">产品策略</div>
+<div class="strategy">
+	<input type="text" id="strategyName" name="strategyName" placeholder="产品策略名称" value="">
+	<input name="begin_date" id="begin_date" type="text" placeholder="开始日期" value=""  readonly>
+	<input name="end_date" id="end_date" type="text" placeholder="结束日期" value=""  readonly>
+</div>
+</div>
+<div class="activity">
+<div id="buy">购买商品</div>
+	<select>
+		<option value="1">系 &nbsp;列</option>
+		<option value="2">单&nbsp;品 </option>
+	</select>
+	<input type="text" id="productName" name="productName" placeholder="产品名称" value="">
+</div>
+<div class="gift">
+<div id="give">赠送商品</div>
+	<input type="checkbox" name="gifts" value="这是产品ID">玫瑰籽油精油睡眠型眼膜（升级版）
+	<input type="checkbox" name="gifts" value="这是产品ID">玫瑰精油魅惑芳香护发素
+	<!-- 这里用判断c:if 来判断每行显示2个产品 -->
+	<br>
+	<input type="checkbox" name="gifts" value="这是产品ID">玫瑰籽油精油睡眠型眼膜（升级版）
+	<input type="checkbox" name="gifts" value="这是产品ID">玫瑰精油魅惑芳香护发素
+</div>
+<input type="button" id="add" value="添加">
+<div class="result">
+	<table>
+		<tr>
+			<th>策略名称</th>
+			<th>产品商品</th>
+			<th>赠送商品</th>
+			<th>活动时间</th>
+			<th>操作</th>
+		</tr>
+		<tr>
+			<td>买3赠1</td>
+			<td>xx滇青瓜</td>
+			<td>
+			<!-- 这里遍历赠送商品显示出来 -->
+				<input type="checkbox" id="gifts" name="rgifts" value="这是产品ID" checked="checked" disabled>玫瑰籽油精油睡眠型眼膜（升级版）<br>
+				<input type="checkbox" id="gifts" name="rgifts" value="这是产品ID" checked="checked" disabled>玫瑰精油魅惑芳香护发素
+			</td>
+			<td>2016.12.15~2016.12.20</td>
+			<td><span class="delete_gift">删除</span></td>
+		</tr>
+		<tr>
+			<td>买3赠1</td>
+			<td>xx滇青瓜</td>
+			<td>
+			<!-- 这里遍历赠送商品显示出来 -->
+				<input type="checkbox" id="gifts" name="rgifts" value="这是产品ID" checked="checked" disabled>玫瑰籽油精油睡眠型眼膜（升级版）<br>
+				<input type="checkbox" id="gifts" name="rgifts" value="这是产品ID" checked="checked" disabled>玫瑰精油魅惑芳香护发素
+			</td>
+			<td>2016.12.15~2016.12.20</td>
+			<td><span class="delete_gift">删除</span></td>
+		</tr>
+	</table>
+	<input type="button" id="ok" value="确定">
+</div>
+<script src="js/jquery.js"></script>
+<script type="text/javascript">
+	jeDate({
+		dateCell:"#begin_date",//isinitVal:true,
+		format:"YYYY.MM.DD",
+		isTime:false, //isClear:false,
+		minDate:"2015-10-19 00:00:00",
+		maxDate:"2020-11-8 00:00:00"
+	});
+	jeDate({
+		dateCell:"#end_date",//isinitVal:true,
+		format:"YYYY.MM.DD",
+		isTime:false, //isClear:false,
+		minDate:"2015-10-19 00:00:00",
+		maxDate:"2020-11-8 00:00:00"
+	});
+	$("#add").click(function(){
+		if($("#strategyName").val()==""){
+			alert("亲,【产品策略名称】不能为空哟！！");
+			return;
+		}
+		if($("#begin_date").val()==""){
+			alert("亲,【活动开始】不能为空哟！！");
+			return;
+		}
+		if($("#end_date").val()==""){
+			alert("亲,【活动结束时间】不能为空哟！！");
+			return;
+		}
+		if($("#productName").val()==""){
+			alert("亲,【产品名称】不能为空哟！！");
+			return;
+		}
+		if($("input[name='gifts']:checked").length ==0){
+			alert("亲，您还没选赠品哟！！");
+			return;
+		}
+		$("table").append("<tr><td>"+$("#strategyName").val()+"</td><td>"+$("#productName").val()+"</td><td>"
+				+"<input type='checkbox' name='r_gifts' value='这是产品ID' checked='checked' disabled>玫瑰籽油精油睡眠型眼膜（升级版）<br>"
+				+"<input type='checkbox' name='r_gifts' value='这是产品ID' checked='checked' disabled>玫瑰精油魅惑芳香护发素</td>"
+				+"<td>"+$("#begin_date").val()+"~"+$("#end_date").val()+"</td>"
+				+"<td><span class='delete_gift'>删除</span></td></tr>");
+		del($('.delete_gift'));
+	});
+	
+	$(function(){
+		del($('.delete_gift'));
+	})
+	
+	function del(position){
+		position.click(function(){
+			$(this).parent().parent().find("td").remove();
+		});
+	}
+	
+	
+</script>
+</body>
+</html>

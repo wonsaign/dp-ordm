@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Server port="8019" shutdown="SHUTDOWN">
+	<Listener className="org.apache.catalina.startup.VersionLoggerListener" />
+	<!-- Security listener. Documentation at /docs/config/listeners.html <Listener 
+		className="org.apache.catalina.security.SecurityListener" /> -->
+	<!--APR library loader. Documentation at /docs/apr.html -->
+	<Listener className="org.apache.catalina.core.AprLifecycleListener"
+		SSLEngine="on" />
+	<!-- Prevent memory leaks due to use of particular java/javax APIs -->
+	<Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener" />
+	<Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
+	<Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
+
+	<!-- Global JNDI resources Documentation at /docs/jndi-resources-howto.html -->
+	<GlobalNamingResources>
+		<Resource name="UserDatabase" auth="Container"
+			type="org.apache.catalina.UserDatabase" description="User database that can be updated and saved"
+			factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
+			pathname="conf/tomcat-users.xml" />
+
+		<!-- ORDM 系统配置 -->
+		<Resource name="jdbc/dataSource" auth="Container" type="javax.sql.DataSource"
+			username="root" password="" url="jdbc:mysql://127.0.0.1:3306/dp_ordm2"
+			driverClassName="com.mysql.jdbc.Driver" initialSize="5" maxWait="20"
+			maxIdle="10" mimIdle="5" validationQuery="select 1"
+			poolPreparedStatements="true" />
+
+		<!-- K3系统 -->
+		<Resource name="jdbc/k3" auth="Container" type="javax.sql.DataSource"
+			username="readonlyuser" password="lotionspa12."
+			url="jdbc:sqlserver://192.168.20.72:1433;DatabaseName=AIS20130314203706"
+			driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+			initialSize="1" maxWait="5" maxIdle="2" mimIdle="2" validationQuery="select 1"
+			poolPreparedStatements="true" />
+
+		<Resource name="jdbc/dwt" auth="Container" type="javax.sql.DataSource"
+			username="readonlyuser" password="w123$"
+			url="jdbc:sqlserver://192.168.10.50:1433;DatabaseName=BI_LS_New"
+			driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+			initialSize="1" maxWait="5" maxIdle="2" mimIdle="2" validationQuery="select 1"
+			poolPreparedStatements="true" />
+
+		<Resource name="jdbc/dwt_10" auth="Container" type="javax.sql.DataSource"
+			username="readonlyuser" password="w123$"
+			url="jdbc:sqlserver://192.168.10.10:1433;DatabaseName=CherryBrand_LS"
+			driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+			initialSize="1" maxWait="5" maxIdle="2" mimIdle="2" validationQuery="select 1"
+			poolPreparedStatements="true" />
+	</GlobalNamingResources>
+
+
+	<Service name="Catalina">
+		<Executor name="tomcatThreadPool" namePrefix="catalina-exec-"
+			maxThreads="150" minSpareThreads="4" />
+
+		<Connector executor="tomcatThreadPool" URIEncoding="utf-8"
+			port="8090" protocol="HTTP/1.1" connectionTimeout="20000"
+			redirectPort="8443" />
+		<Engine name="Catalina" defaultHost="localhost">
+
+
+			<Realm className="org.apache.catalina.realm.LockOutRealm">
+				<Realm className="org.apache.catalina.realm.UserDatabaseRealm"
+					resourceName="UserDatabase" />
+			</Realm>
+
+			<Host name="localhost" appBase="webapps" unpackWARs="true"
+				autoDeploy="true">
+
+				<Valve className="org.apache.catalina.valves.AccessLogValve"
+					directory="logs" prefix="localhost_access_log" suffix=".txt"
+					pattern="%h %l %u %t &quot;%r&quot; %s %b" />
+
+			</Host>
+		</Engine>
+	</Service>
+</Server>

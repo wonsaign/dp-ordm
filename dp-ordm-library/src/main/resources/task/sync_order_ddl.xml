@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tables>
+	<DDL id="SYNC_ORDER">
+	<datasource type="datasource">
+		k3
+	</datasource>
+		<table id="SYNC_ORDER">
+			<c>##订单信息在金蝶是否发货查询</c>
+			<name>SYNC_ORDER</name>
+			<key>FHeadSelfB0170</key>
+			<stmt>
+<![CDATA[
+	SELECT FHeadSelfB0170,
+	FStatus,
+	FHeadSelfB0165
+	FROM  [AIS20130314203706].[dbo].[ICStockBill]  
+	WHERE  FHeadSelfB0170 is not null 
+	AND FHeadSelfB0170 <>''
+	AND FCancellation=0 
+	AND fdate is not null
+	AND fdate>DateAdd(day,?,GETDATE()) 
+	AND FStatus=1
+]]>
+			</stmt>
+		</table>
+	</DDL>
+</Tables>
+	

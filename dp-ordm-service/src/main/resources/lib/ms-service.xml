@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	<!-- 导入配置文件 -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:config.properties</value>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="appContext" class="com.zeusas.core.utils.AppContext"></bean>
+
+	<import resource="classpath:core/core-event.xml" />
+	<import resource="classpath:core/core-hibernate.xml" />
+	<import resource="classpath:core/core-rawdata.xml" />
+	<import resource="classpath:core/core-service.xml" />
+	<import resource="classpath:core/core-jdbc.xml" />
+	<import resource="classpath:core/core-alidayu-sms.xml"/>
+	<!-- WebApp 默认数据连接及配置 -->
+	<import resource="classpath:lib/ordm_datasource.xml" />
+	<import resource="classpath:core-auth.xml" />
+	<import resource="classpath:core-schedule.xml" />
+</beans>

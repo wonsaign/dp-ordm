@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tables>
+	<DDL id="WMS_SYNC">
+		<table id="CHECK_CART">
+			<c>#释放购物车提交时间超过30分钟的购物车#</c>
+			<name>CHECK_CART</name>
+			<key>cartId</key>
+			<property>
+<![CDATA[
+	cartId,
+	counterId,
+	counterName,
+	userId,
+	userName,
+	createDate,
+	lastUpdate,
+	status
+]]>
+			</property>
+			<stmt>
+<![CDATA[
+	SELECT * from bus_cart
+	 WHERE STATUS=2 
+	   AND (?-lastupdate>?)
+]]>
+			</stmt>
+		</table>
+	</DDL>
+</Tables>
+	

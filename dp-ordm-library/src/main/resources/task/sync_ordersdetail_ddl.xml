@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Tables>
+	<DDL id="SYNC_ORDERDETAIL">
+		<datasource type="datasource">
+			k3
+		</datasource>
+		<table id="ORDERDETAIL_K3">
+			<c>##k3 订单明细</c>
+			<type>query</type>
+			<key></key>
+			<stmt>
+				<![CDATA[
+					SELECT a.fheadselfb0170 AS OrderNo,
+						b.fitemid AS ProductId,
+						b.FQty AS RealQty,
+						b.fconsignprice AS RealUnitPrice,
+						b.fconsignamount AS RealTotalPrice,
+						b.FentryselfB0183 AS packagedetailId
+					FROM ICStockBill a
+					JOIN ICStockBillEntry b
+					ON a.finterid = b.finterid 
+					WHERE a.fheadselfb0170 <>''
+				]]>
+			</stmt>
+		</table>
+		
+		<table id="REALFEE_K3">
+			<c>##k3 金额</c>
+			<type>query</type>
+			<key></key>
+			<stmt>
+				<![CDATA[
+					SELECT a.fheadselfb0170 AS OrderNo,
+						SUM(b.fconsignamount) AS RealFee
+					FROM ICStockBill a
+					JOIN ICStockBillEntry b
+					ON a.finterid = b.finterid 
+					WHERE a.fheadselfb0170 <>''
+					GROUP BY a.fheadselfb0170
+				]]>
+			</stmt>
+		</table>
+	</DDL>
+	
+	<DDL id="ORDM_DIFFDETAIL">
+	<datasource type="datasource">
+		dataSource
+	</datasource>
+	
+	<table id="ORDM_PACKAGEDETAILID">
+			<c>packageDetailId对应orderDetail</c>
+			<type>query</type>
+			<key></key>
+			<stmt>
+				<![CDATA[
+					SELECT
+						pd.id,
+						pd.OrderDetailId
+					FROM
+						bus_packagedetail pd
+					JOIN bus_package p ON p.Id = pd.PackageId
+					JOIN bus_order o ON o.OrderNo = p.OrderNo
+					WHERE
+						OrderDetailId <> ''
+					AND o.Id >=1702220015
+					AND o.RealFee=0
+				]]>
+			</stmt>
+		</table>
+	
+	<proc id="INSERT_DIFFDETAIL">
+			<!-- update, query -->
+			<type>update</type>
+			<stmt>
+				<![CDATA[
+				INSERT INTO bus_diffdetail 
+				(OrderNo, ProductId,ProductName, RealQty, RealUnitPrice, RealTotalPrice) 
+				VALUES (?, ?, ?, ?, ? ,?);
+				]]>
+			</stmt>
+		</proc>
+	</DDL>
+</Tables>
+
+
+	

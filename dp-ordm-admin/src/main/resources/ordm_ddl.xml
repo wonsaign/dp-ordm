@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tables>
+
+
+<DDL id="ORDM_SELLER">
+<table>
+<c>##金蝶销售记录</c>
+<key>cid</key>
+<name></name>
+<stmt>
+<![CDATA[
+SELECT cid,pid,val from tempdb.dbo.tb_productseller;
+]]>
+</stmt>
+</table>
+
+<proc id="ORDM_DEMO">
+<!-- update, query -->
+<type>update</type>
+<stmt>
+INSERT INTO tb_productseller(cid,pid,val) VALUES (?,?,?)
+</stmt>
+</proc>
+
+</DDL>
+
+<!-- 生产环境用 -->
+<DDL id="ORDM_SELLER_WORK">
+<table>
+<c>##金蝶销售记录</c>
+<key></key>
+<name></name>
+<stmt>
+<![CDATA[
+SELECT distinct [CounterCode]
+      ,pd.[Unitcode]
+      ,sum([Amount]) as amount
+FROM [BI_LS_New].[dbo].[BI_Transactionlog_NS] tn
+inner join [ERP_WITPOS].[dbo].[I_ERP_Products] pd on pd.Unitcode = tn.Unitcode
+where TXD_Date >= ? and TXD_Date <= ?
+and [Brand] = N'ZW'
+and [K3ProductCode] not like N'C%'
+and [Status] = N'B'
+and CounterCode not like N'00000%'
+group by [CounterCode],pd.[Unitcode]
+order by [CounterCode],amount desc
+]]>
+</stmt>
+</table>
+
+<proc id="ORDM_DEMO">
+<!-- update, query -->
+<type>update</type>
+<stmt>
+INSERT INTO tb_productseller(cid,pid,val) VALUES (?,?,?)
+</stmt>
+</proc>
+
+</DDL>
+
+</Tables>
+	

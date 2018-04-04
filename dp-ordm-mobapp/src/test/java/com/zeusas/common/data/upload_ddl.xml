@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tables>
+	<DDL id="UPLOAD_PRODUCT">
+		<table id="BASE_PRODUCT">
+
+			<key>PRODUCTID</key>
+			<field></field>
+			<type>query</type>
+			<stmt>
+<![CDATA[
+select ProductId,ProductCode, BarCode,FItemClassID from BASE_PRODUCT
+]]>
+			</stmt>
+		</table>
+
+		<proc id="update_imgurl">
+			<type>update</type>
+			<stmt>
+<![CDATA[
+update BASE_PRODUCT set ImageURL = ?, LastUpdate = ? WHERE ProductId = ?
+]]>
+			</stmt>
+		</proc>
+	</DDL>
+
+	<DDL id="UPLOAD_SERIALS">
+		<table id="CORE_DICT">
+			<key>HARDCODE</key>
+			<field></field>
+			<type>query</type>
+			<stmt>
+<![CDATA[
+SELECT did, pid, hardcode from CORE_DICT where pid='104'
+]]>
+			</stmt>
+		</table>
+
+		<proc id="UPDATE_DICT">
+			<type>update</type>
+			<stmt>
+<![CDATA[
+UPDATE CORE_DICT SET url = ?, LastUpdate = ? WHERE hardcode = ? and pid='104'
+]]>
+			</stmt>
+		</proc>
+	</DDL>
+</Tables>
+	

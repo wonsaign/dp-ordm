@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+	自定义cronExp表达式定义说明
+	1. 顺序s m H D W M Q Y [0|1]
+	2. 字段值说明
+	字段 			允许值				允许的特殊字符 
+	s(秒) 			0-59				* + 
+	m(分)			0-59  				* + 
+	h(小时)			0-23  				* + 
+	d(日期) 		1-31  				* +
+	W(周)			0..6				* + 周日为0，周一为1，依此类推
+	M(月份) 		1-12	 			* +
+	Q(季度) 		1..4				* +
+	Y(年) 			1970-2099			* +
+	
+	3. 特殊字符 意义 
+	* 表示所有值
+	+ 每，如每月、每季、每周。
+	4.说明，最后一位数表示周期与非周期性任务调度,1周期，0非周期
+	舉例说明：
+	每间隔1分钟执行一次： 0 1 * * * * * * 1
+	每间隔130秒执行一次：10 2 * * * * * * 1
+	每天早上5：30执行一次 
+-->
+<TaskService>
+	<interval>5000</interval>
+	<tasks>
+		<!-- 0 0 5 * * * * + 0 -->
+		<tasks>
+			<id>1000</id>
+			<taskName>日报表(一一)</taskName>
+			<className>com.zeus.reportform.task.ReportExportTask</className>
+			<cronExpresion>0 0 5 + * * * * 0</cronExpresion>
+			<paramsMap>
+				<S001>com.zeus.reportform.cmd.S001</S001>
+				<S002>com.zeus.reportform.cmd.S002</S002>
+				<S005>com.zeus.reportform.cmd.S005</S005>
+				<S011>com.zeus.reportform.cmd.S011</S011>
+				<S012>com.zeus.reportform.cmd.S012</S012>
+				<S013>com.zeus.reportform.cmd.S013</S013>
+				<S016>com.zeus.reportform.cmd.S016</S016>
+				<S019>com.zeus.reportform.cmd.S019</S019>
+				<S020>com.zeus.reportform.cmd.S020</S020>
+				<S024>com.zeus.reportform.cmd.S024</S024>
+				<S030>com.zeus.reportform.cmd.S030</S030>
+				<S031>com.zeus.reportform.cmd.S031</S031>
+			</paramsMap>
+		</tasks>
+
+		<!-- 0 0 5 1 + * * * 0 -->
+		<tasks>
+			<id>1002</id>
+			<taskName>周报表(周一)</taskName>
+			<className>com.zeus.reportform.task.ReportExportTask</className>
+			<cronExpresion>0 0 5 1 + * * * 0</cronExpresion>
+			<paramsMap>
+				<S006>com.zeus.reportform.cmd.S006</S006>
+				<S007>com.zeus.reportform.cmd.S007</S007>
+				<S010>com.zeus.reportform.cmd.S010</S010>
+				<S015>com.zeus.reportform.cmd.S015</S015>
+				<S017>com.zeus.reportform.cmd.S017</S017>
+			</paramsMap>
+		</tasks>
+
+		<!-- 0 0 5 2 + * * * 0 -->
+		<tasks>
+			<id>1003</id>
+			<taskName>周报表(周二)</taskName>
+			<className>com.zeus.reportform.task.ReportExportTask</className>
+			<cronExpresion>0 0 5 2 + * * * 0</cronExpresion>
+			<paramsMap>
+				<S025>com.zeus.reportform.cmd.S025</S025>
+			</paramsMap>
+		</tasks>
+
+		<!-- 0 0 5 4 + * * * 0 -->
+		<tasks>
+			<id>1004</id>
+			<taskName>周报表(周四)</taskName>
+			<className>com.zeus.reportform.task.ReportExportTask</className>
+			<cronExpresion>0 0 5 4 + * * * 0</cronExpresion>
+			<paramsMap>
+				<S006>com.zeus.reportform.cmd.S006</S006>
+				<S007>com.zeus.reportform.cmd.S007</S007>
+			</paramsMap>
+		</tasks>
+
+		<!-- 0 0 5 6 + * * * 0 -->
+		<tasks>
+			<id>1005</id>
+			<taskName>周报表(周六)</taskName>
+			<className>com.zeus.reportform.task.ReportExportTask</className>
+			<cronExpresion>0 0 5 6 + * * * 0</cronExpresion>
+			<paramsMap>
+				<S022>com.zeus.reportform.cmd.S022</S022>
+			</paramsMap>
+		</tasks>
+
+		<!-- 0 0 5 26 * + * * 0 -->
+		<tasks>
+			<id>1006</id>
+			<taskName>月报表（26号）</taskName>
+			<className>com.zeus.reportform.task.ReportExportTask</className>
+			<cronExpresion>0 0 5 26 * + * * 0</cronExpresion>
+			<paramsMap>
+				<S008>com.zeus.reportform.cmd.S008</S008>
+				<S108>com.zeus.reportform.cmd.S108</S108>
+				<S009>com.zeus.reportform.cmd.S009</S009>
+				<S014>com.zeus.reportform.cmd.S014</S014>
+				<S015>com.zeus.reportform.cmd.S015</S015>
+				<S017>com.zeus.reportform.cmd.S017</S017>
+				<S021>com.zeus.reportform.cmd.S021</S021>
+				<S121>com.zeus.reportform.cmd.S121</S121>
+				<S026>com.zeus.reportform.cmd.S026</S026>
+				<S028>com.zeus.reportform.cmd.S028</S028>
+				<S032>com.zeus.reportform.cmd.S032</S032>
+				<S033>com.zeus.reportform.cmd.S033</S033>
+				<S035>com.zeus.reportform.cmd.S035</S035>
+				<S036>com.zeus.reportform.cmd.S036</S036>
+				<S037>com.zeus.reportform.cmd.S037</S037>
+				<S038>com.zeus.reportform.cmd.S038</S038>
+				<S039>com.zeus.reportform.cmd.S039</S039>
+				<S040>com.zeus.reportform.cmd.S040</S040>
+				<S041>com.zeus.reportform.cmd.S041</S041>
+				<S042>com.zeus.reportform.cmd.S042</S042>
+			</paramsMap>
+		</tasks>
+
+	</tasks>
+</TaskService>

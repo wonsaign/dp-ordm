@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tables>
+	<DDL id="ORDM_SELLER">
+	<datasource type="datasource">
+		dwt
+	</datasource>
+		<table id="ORDM_SELLER">
+			<c>##金蝶销售记录</c>
+			<key>CounterCode,Unitcode</key>
+			<name></name>
+			<stmt>
+<![CDATA[
+	SELECT distinct [CounterCode]
+	      ,pd.[Unitcode]
+	      ,sum([Amount]) as amount
+	      ,sum(quantity) as quantity
+	FROM [LS_DataQuery].[dbo].[BI_Transactionlog_NS] tn
+	INNER join [ERP_WITPOS].[dbo].[I_ERP_Products] pd on pd.Unitcode = tn.Unitcode
+		WHERE TXD_Date >= ? and TXD_Date <= ?
+			and [Brand] = N'ZW'
+			and [Manufacturers] <> N'LS露芯'
+			and [K3ProductCode] not like N'C%'						
+			and [Status] = N'B'									
+			and CounterCode not in (SELECT distinct [CounterCode]	
+		FROM [ERP_WITPOS].[dbo].[CounterInfo_Canceled]
+		WHERE [IsCanceled] = 1)
+			and CounterCode not like N'00000%'					
+		GROUP BY [CounterCode],pd.[Unitcode]
+]]>
+			</stmt>
+		</table>
+	</DDL>
+	
+</Tables>
+	

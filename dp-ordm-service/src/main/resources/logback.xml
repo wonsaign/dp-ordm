@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender"> 
+    	<file>logs/ordm-ws.log</file> 
+    	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> 
+      		<!-- daily rollover --> 
+      		<fileNamePattern>logs/ordm-ws.%d{yyyy-MM-dd}.log</fileNamePattern> 
+      		<maxHistory>30</maxHistory> 
+    	</rollingPolicy>
+ 		<encoder> 
+      		<pattern>[MS] [%p] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{0}:%L-%m%n</pattern> 
+    	</encoder> 
+	</appender>  
+
+	<root level="ERROR">
+		<appender-ref ref="FILE" />		
+	</root>
+	<logger name="com.zeusas" level="INFO" />
+</configuration>

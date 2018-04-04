@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+	<body>
+		<div class="above">
+			<div style="color: white; width: 150px; height: 40px; position: absolute; text-align: center; line-height: 40px; font-weight: bold; font-size: 22px;">后台管理系统</div>
+			<div class="system_notice">系统通知</div>
+			<div class="user_notice">用户通知</div>
+		</div>
+		<div id="myDiv">
+			<script src="js/jquery.js"></script>
+			<script src="js/jquery.datetimepicker.full.js"></script>
+			<script>
+				$('#myDiv').on('click','.ip',function(){
+						var xx=$(this).attr('id');
+						if (window.XMLHttpRequest)
+						  {// code for IE7+, Firefox, Chrome, Opera, Safari
+						  xmlhttp=new XMLHttpRequest();
+						  }
+						else
+						  {// code for IE6, IE5
+						  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+						  }
+						xmlhttp.onreadystatechange=function()
+						  {
+						  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+						    {
+						    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+						    }
+						  }
+						xmlhttp.open("GET",xx+".html",true);
+						xmlhttp.send();	
+				});
+				$('#myDiv').on('focus','#start',function(){
+					$('#start').datetimepicker({
+					dayOfWeekStart : 1,
+					lang:'en',
+					disabledDates:['1986/01/08','1986/01/09','1986/01/10'],
+					startDate:	'2017/01/01'
+					});
+					$('#start').datetimepicker({value:'',step:10});
+				})
+				$('#myDiv').on('focus','#end',function(){
+					$('#end').datetimepicker({
+					dayOfWeekStart : 1,
+					lang:'en',
+					disabledDates:['1986/01/08','1986/01/09','1986/01/10'],
+					startDate:	'2017/01/01'
+					});
+					$('#end').datetimepicker({value:'',step:10});
+				})
+				$("#myDiv").on("change",".dis_select",function(){
+					var disHTML = $('.dis_option').find("#"+$(this).val()).clone(true);
+				 	$('.dis_block').html(disHTML);
+				});
+				$("#myDiv").on("change",".stra_select",function(){
+					var straHTML = $('.stra_option').find("#"+$(this).val()).clone(true);
+				 	$('.stra_block').html(straHTML);
+				});
+				$('#myDiv').on('click','.set_amend',function(){
+					var mod=$(this).attr('href');
+					if (window.XMLHttpRequest)
+					  {// code for IE7+, Firefox, Chrome, Opera, Safari
+					  xmlhttp=new XMLHttpRequest();
+					  }
+					else
+					  {// code for IE6, IE5
+					  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+					  }
+					xmlhttp.onreadystatechange=function()
+					  {
+					  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					    {
+					    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+					    }
+					  }
+					xmlhttp.open("GET",mod+".html",true);
+					xmlhttp.send();	
+				})
+			</script>
+		</div>
+		<div class="sidebar">
+			<ul class="ul1">
+				<li>
+					<a href="#" class="drop-down">基础数据</a>
+					<ul class="ul2">
+						<li><a href="#" class="page t" id="goods">商品</a></li>
+						<li><a href="#" class="page t" id="customer">客户</a></li>
+						<li><a href="#" class="page t" id="stores">门店</a></li>
+						<li><a href="#" class="page t" id="warehouse">仓库</a></li>
+					</ul>
+				</li>
+				<li><a href="#" class="page t" id="order">订单管理</a></li>
+				<li> 
+					<a href="#" class="drop-down">产品管理</a>
+					<ul class="ul2">
+						<li><a href="#" class="page t" id="product_information">产品信息</a></li>
+						<li><a href="#" class="page t" id="Product_strategy">产品策略</a></li>
+						<li><a href="#" class="page t" id="Discount_strategy">活动策略</a></li>
+						<li><a href="#" class="page t" id="Sale_strategy">折扣策略</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#" class="drop-down">系统设计</a>
+					<ul class="ul2">
+						<li><a href="#" class="page t" id="user">用户</a></li>
+						<li><a href="#" class="page t" id="role">角色</a></li>
+						<li><a href="#" class="page t" id="permissions">权限</a></li>
+						<li><a href="#" class="page t" id="organization">组织机构</a></li>
+						<li><a href="#" class="page t" id="system_information">系统信息</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>		
+	</body>
+	<script src="js/index.js"></script>
+</html>

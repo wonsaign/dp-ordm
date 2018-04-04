@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- sync_orgunits_task.xml -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="orgUnitsSyncTask" class="com.zeusas.dp.ordm.task.OrgUnitsSyncTask">
+	</bean>
+	
+	<bean id="tb_OrgUnitsSyncTask" class="com.zeusas.common.task.TaskBean">
+		<property name="name" value="组织机构同步" />
+		<property name="cronTask" ref="orgUnitsSyncTask" />
+		<property name="waitTime" value="300000" />
+		<property name="valid" value="true" />
+		<property name="cronExpresion">
+			<list>
+				<!--   s  m h  d w m q y C  -->
+				<value>0 38 23 * * * * * 0</value>
+			</list>
+		</property>
+	</bean>
+</beans>

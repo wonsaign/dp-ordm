@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- sync_cancelorders_task.xml -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="MonthPersentTask" class="com.zeusas.dp.ordm.task.MonthPresentTask">
+	</bean>
+	
+	<bean id="tb_MonthPersentTask" class="com.zeusas.common.task.TaskBean">
+		<property name="name" value="自动发货" />
+		<property name="cronTask" ref="MonthPersentTask" />
+		<property name="waitTime" value="300000" />
+		<property name="valid" value="false" />
+		<property name="cronExpresion">
+			<list>
+				<!--   s  m h  d w m q y C  （24小时执行一次）-->
+				<value>0 0 2  * * * * * 0</value>
+			</list>
+		</property>
+	</bean>
+</beans>

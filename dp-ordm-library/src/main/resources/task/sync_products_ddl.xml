@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tables>
+	<DDL id="SYNC_PRODUCTS">
+		<datasource type="datasource">
+			k3
+		</datasource>
+		<table id="SYNC_PRODUCTS">
+			<c>##产品信息同步</c>
+			<key>ProductId</key>
+			<name></name>
+			<property>
+<![CDATA[
+	productId,
+	pBrand,
+	productCode,
+	name,
+	barCode,
+	logisticsCode,
+	retailPrice ,
+	memberPrice,
+	materialPrice,
+	manufacturer,
+	specifications,
+	size,
+	length,
+	width,
+	height,
+	boxNum,
+	typeId,
+	typeName,
+	bodyTypeId,
+	bodyTypeName,
+	fitemClassId,
+	fitemClassName,
+	status,
+	issued,
+	lastUpdate,
+]]>
+			</property>
+			<stmt>
+<![CDATA[
+	SELECT distinct t.FItemID as ProductId,
+		t0.FNumber as PBrand,
+		t.FNumber as productcode,
+		t.FName as Name,
+		coalesce(t1.FBarCode,'无') as BarCode,
+		t.F_112 as LogisticsCode,
+		t.F_108 as RetailPrice,
+		t.F_102 as MemberPrice,
+		t.F_103 as MaterialPrice,
+		t.F_101 as Manufacturer,
+		t.FModel as Specifications,
+		t.FSize as Size,
+		t.FLength as Length,
+		t.FWidth as Width,
+		t.FHeight as Height,
+		t.f_111 as BoxNum,
+		t4.[FItemID] as TypeID,
+		t4.[FName] as TypeName,
+		t3.fitemid as bodytypeid,
+		t3.fname as bodytypename,
+		t2.[FItemID] as FItemClassID,
+		t2.[FName] as FItemClassName,
+		t.FDeleted as Status,
+		t.f_149 as  Issued,
+		cast(GETDATE() as bigint) as LastUpdateTime
+	FROM [AIS20130314203706].[dbo].[t_ICItem] t 
+	JOIN [AIS20130314203706].[dbo].[t_Item] t0 
+		on t.F_105 = t0.FItemID and t0.FItemClassID = 3002 
+	left join t_BarCode t1 
+		on t1.FItemID = t.FItemID and t1.FTypeID = 4 
+	left join t_item t4 
+		on t.f_113=t4.fitemid and  t4.FItemClassID=3016 
+	left join t_item t3 
+		on t.F_135 = t3.fitemid  
+			and t3.FItemClassID = 3027 
+			and t3.FLevel = 1 
+			and t3.FDetail = 1 
+	left join t_item t2 
+		on t.FNumber like t2.FNumber + '.%' 
+			and t2.FItemClassID = 4 
+			and t2.FLevel = 2 
+			and t2.FDetail = 0 
+	WHERE  t.F_112 is not null 
+		and t.FDeleted = 0
+		and t.f_149 is not null
+]]>
+			</stmt>
+		</table>
+	</DDL>
+
+</Tables>
+	

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- sync_seller_task.xml -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="productSyncTask" class="com.zeusas.dp.ordm.task.ProductSyncTask">
+	</bean>
+	
+	<bean id="tb_ProductSyncTask" class="com.zeusas.common.task.TaskBean">
+		<property name="name" value="产品信息同步" />
+		<property name="cronTask" ref="productSyncTask" />
+		<property name="waitTime" value="300000" />
+		<property name="valid" value="true" />
+		<property name="cronExpresion">
+			<list>
+				<!--   s  m   h  d w m q y C  -->
+				<value>30 0   6  * * * * * 0</value>
+				<value>30 30 12  * * * * * 0</value>
+			</list>
+		</property>
+	</bean>
+</beans>

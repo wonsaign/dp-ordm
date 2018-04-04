@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Tables>
+	<DDL id="SYNC_CANCELORDERS">
+		<datasource type="datasource">
+			dataSource
+		</datasource>
+		<table id="ORDERS">
+			<c>##店务通组织结构</c>
+			<type>query</type>
+			<key></key>
+			<field>orgId,orgCode</field>
+			<stmt>
+				<![CDATA[
+					-- NO SQL
+				]]>
+			</stmt>
+		</table>
+	</DDL>
+</Tables>
+
+
+	

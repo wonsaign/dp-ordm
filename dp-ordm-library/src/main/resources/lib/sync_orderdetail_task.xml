@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- sync_cancelorders_task.xml -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="orderDatailSyncTask" class="com.zeusas.dp.ordm.task.OrderDatailSyncTask">
+	</bean>
+	
+	<bean id="tb_orderDatailSyncTask" class="com.zeusas.common.task.TaskBean">
+		<property name="name" value="订单差分" />
+		<property name="cronTask" ref="orderDatailSyncTask" />
+		<property name="waitTime" value="300000" />
+		<property name="valid" value="true" />
+		<property name="cronExpresion">
+			<list>
+				<!--   s  m  h   d w m q y C  -->
+				<value>0  0  3  * * * * * 1</value>
+				<!-- <value>0  38 5   * * * * * 0</value>
+				<value>0  38 12  * * * * * 0</value> -->
+			</list>
+		</property>
+	</bean>
+</beans>

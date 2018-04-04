@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="css/index.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	</head>
+	<body>
+		<div style="width: 100%; height:100%; background:url(img/2.png); background-repeat: no-repeat; background-size: 100% 100%; position: fixed;z-index: -10;"></div>
+		<div class="icon">
+				<img src="img/3.png">
+		</div>
+		<div class="top">
+			<ul class="nav">
+				<li><a href="index.html">首页</a></li>
+				<li><a href="order.html">订货</a></li>
+				<li><a href="intent.html" style="background: #c3e7b1; display: inline-block; width: 90%; height: 50px;">订单信息</a></li>
+				<li><a href="user.html">用户信息</a></li>
+				<li><a href="setting.html">系统设置</li></a>
+			</ul>
+		</div>
+	    <div class="center">
+			 <select class="intent_select">
+			 	<option value="0"></option>
+			 	<option value="1">待审核</option>
+			 	<option value="2">待付款</option>
+			 	<option value="3">已付款</option>
+			 	<option value="4">待收货</option>
+			 	<option value="5">已收货</option>
+			 </select>
+			 
+			 <div class="intent_body">
+			 	
+			 </div>
+			 <div class="select_body">
+				 <div id="1">
+				 	<ul class="intent_number">
+					 	<li><a href="intent_info.html">订单号 PO201611230001  北京西直门店  状态</a></li>
+					 </ul>
+				 </div>
+				 <div id="2">
+				 	<ul class="intent_number">
+					 	<li><a href="intent_info.html">订单号 PO201611230001  北京西直门店  状态</a></li>
+					 	<li><a href="intent_info.html">订单号 PO201611230001  北京西直门店  状态</a></li>
+					 </ul>
+				 </div>
+				 <div id="3">
+				 	<ul class="intent_number">
+					 	<li><a href="intent_info.html">订单号 PO201611230001  北京西直门店  状态</a></li>
+					 	<li><a href="intent_info.html">订单号 PO201611230001  北京西直门店  状态</a></li>
+					 	<li><a href="intent_info.html">订单号 PO201611230001  北京西直门店  状态</a></li>
+					 </ul>
+				 </div>
+				 <div id="4">
+				 	<ul class="intent_number">
+					 	<li><a href="intent_info.html">订单号 PO201611230001  北京西直门店  状态</a></li>
+					 	<li><a href="intent_info.html">订单号 PO201611230001  北京西直门店  状态</a></li>
+					 	<li><a href="intent_info.html">订单号 PO201611230001  北京西直门店  状态</a></li>
+					 	<li><a href="intent_info.html">订单号 PO201611230001  北京西直门店  状态</a></li>
+					 </ul>
+				 </div>
+				 <div id="5">
+				 	<ul class="intent_number">
+					 	<li><a href="intent_info.html">订单号 PO201611230001  北京西直门店  状态</a></li>
+					 	<li><a href="intent_info.html">订单号 PO201611230001  北京西直门店  状态</a></li>
+					 	<li><a href="intent_info.html">订单号 PO201611230001  北京西直门店  状态</a></li>
+					 	<li><a href="intent_info.html">订单号 PO201611230001  北京西直门店  状态</a></li>
+					 	<li><a href="intent_info.html">订单号 PO201611230001  北京西直门店  状态</a></li>
+					 	<li><a href="intent_info.html">订单号 PO201611230001  北京西直门店  状态</a></li>
+					 </ul>
+				 </div>
+			 </div>
+			 <script src="js/jquery.js"></script>
+			 <script>
+			 $(document).ready(function(){
+			 	$('.intent_select').change(function(){
+			 	var modelHTML = $('.select_body').find("#"+$(this).val()).clone(true);
+			 	$('.intent_body').html(modelHTML);
+			 	});
+			 })
+			 	
+			 </script>
+			 
+		</div>
+	</body>
+</html>

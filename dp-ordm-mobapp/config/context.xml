@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context>
+	<Resource name="jdbc/dataSource" auth="Container" type="javax.sql.DataSource"
+		username="root" password="admin"
+		url="jdbc:mysql://192.168.1.126:3306/dp_ordm2" 
+		driverClassName="com.mysql.jdbc.Driver"
+		initialSize="2" maxWait="5000" maxActive="5" maxIdle="2"
+		validationQuery="select 1" poolPreparedStatements="true" />
+
+		<!-- K3系统 -->
+		<Resource name="jdbc/k3" auth="Container" type="javax.sql.DataSource"
+			username="sa" password="lotionspa12."
+			url="jdbc:sqlserver://192.168.20.72:1433;DatabaseName=AIS20130314203706"
+			driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+			initialSize="1" maxWait="5" maxIdle="2" mimIdle="2" validationQuery="select 1"
+			poolPreparedStatements="true" />
+
+		<Resource name="jdbc/dwt" auth="Container" type="javax.sql.DataSource"
+			username="readonlyuser" password="w123$"
+			url="jdbc:sqlserver://192.168.10.50:1433;DatabaseName=BI_LS_New"
+			driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+			initialSize="1" maxWait="5" maxIdle="2" mimIdle="2" validationQuery="select 1"
+			poolPreparedStatements="true" />
+
+		<Resource name="jdbc/dwt_10" auth="Container" type="javax.sql.DataSource"
+			username="readonlyuser" password="w123$"
+			url="jdbc:sqlserver://192.168.10.10:1433;DatabaseName=CherryBrand_LS"
+			driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+			initialSize="1" maxWait="5" maxIdle="2" mimIdle="2" validationQuery="select 1"
+			poolPreparedStatements="true" />
+</Context>

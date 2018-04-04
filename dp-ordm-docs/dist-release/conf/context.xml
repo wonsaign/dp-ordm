@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context>
+
+	<WatchedResource>WEB-INF/web.xml</WatchedResource>
+	<WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+
+	<ResourceLink name="jdbc/dataSource" global="jdbc/dataSource"
+		type="javax.sql.DataSource" />
+	<ResourceLink name="jdbc/k3" global="jdbc/k3"
+		type="javax.sql.DataSource" />
+	<ResourceLink name="jdbc/dwt" global="jdbc/dwt"
+		type="javax.sql.DataSource" />
+	<ResourceLink name="jdbc/dwt_10" global="jdbc/dwt_10"
+		type="javax.sql.DataSource" />
+</Context>

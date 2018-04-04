@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<!-- UNLOCK SHOPPING CART  -->
+	<import resource="classpath:lib/check_cart_task.xml" />
+	<import resource="classpath:lib/sync_counters_task.xml" />
+	<import resource="classpath:lib/sync_customers_task.xml" />
+	<!-- SYNC ORDER STATUS FROM K3 -->
+	<import resource="classpath:lib/sync_order_task.xml" />
+	<import resource="classpath:lib/sync_seller_task.xml" />
+	<import resource="classpath:lib/sync_storehouses_task.xml" />
+</beans>
